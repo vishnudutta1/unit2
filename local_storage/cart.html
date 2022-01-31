@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #products{
+            border: 1px solid black;
+            
+            margin: 5% 5% 10% 10%;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20%;
+            grid-gap: 5%;
+            justify-content: center;
+        }
+
+        img{
+            width: 80%;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome to cart</h1>
+
+    
+    <!-- to append the cart item to this div -->
+    <div id="products"></div> 
+
+</body>
+</html>
+
+<script>
+
+
+let parent = document.getElementById('products');
+   
+
+
+     // 1. get the data from local storage
+    let cart = JSON.parse(localStorage.getItem("cart"));
+
+    console.log("cart",cart);
+
+
+    
+    
+
+   
+    function showProducts(){
+
+    cart.forEach(function(product){
+        //console.log(product.name);
+
+        let div = document.createElement("div"); //where we can append our all data
+
+        let img = document.createElement("img"); //img is required to show img --> these are basically tag
+        img.src = product.img
+
+        let product_price = document.createElement("p"); 
+        product_price.textContent = product.price;
+
+        let product_name = document.createElement("p");
+        product_name.textContent = product.name;
+        
+        let Cartbutton_name = document.createElement("button")
+        Cartbutton_name.innerText = "Add to Cart";
+
+        Cartbutton_name.onclick = function(){
+            addtoCart(product)
+        }
+
+
+        div.append(img,product_name,product_price,Cartbutton_name);
+
+        parent.append(div)
+
+
+
+
+    })
+}
+    showProducts();
+
+
+
+   
+
+
+        
+
+
+</script>

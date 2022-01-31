@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #products{
+            border: 1px solid black;
+            height: 600px;
+            margin: 5% 5% 10% 10%;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20%;
+            grid-gap: 5%;
+            justify-content: center;
+        }
+
+        img{
+            width: 80%;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>Local Storage</h1>
+
+    <a href="cart.html"><button>Go to cart</button></a>
+
+    <div id="products"></div>
+</body>
+</html>
+
+<script>
+
+    let data = [
+        {
+            name : "Football",
+            price : 500,
+            img : "https://www.thestatesman.com/wp-content/uploads/2020/04/1c5b1aa3386eeb2c21d633f04e2ddfbe.jpg"
+        },
+        {
+            name : "Football",
+            price : 500,
+            img : "https://www.thestatesman.com/wp-content/uploads/2020/04/1c5b1aa3386eeb2c21d633f04e2ddfbe.jpg"
+        },
+        {
+            name : "Shirt",
+            price : 1100,
+            img : "https://media.istockphoto.com/photos/mens-shirt-picture-id488160041?k=20&m=488160041&s=612x612&w=0&h=OH_-skyES8-aeTvDQHdVDZ6GKLsqp6adFJC8u6O6_UY="
+        },
+        {
+            name : "Shoe",
+            price : 1400,
+            img : "https://thumbs.dreamstime.com/z/leather-shoes-26612971.jpg"
+        },
+        {
+            name : "Football",
+            price : 500,
+            img : "https://www.thestatesman.com/wp-content/uploads/2020/04/1c5b1aa3386eeb2c21d633f04e2ddfbe.jpg"
+        },
+        {
+            name : "Football",
+            price : 500,
+            img : "https://www.thestatesman.com/wp-content/uploads/2020/04/1c5b1aa3386eeb2c21d633f04e2ddfbe.jpg"
+        },
+        {
+            name : "Shirt",
+            price : 5100,
+            img : "https://media.istockphoto.com/photos/mens-shirt-picture-id488160041?k=20&m=488160041&s=612x612&w=0&h=OH_-skyES8-aeTvDQHdVDZ6GKLsqp6adFJC8u6O6_UY="
+        },
+        {
+            name : "Shoe",
+            price : 1500,
+            img : "https://thumbs.dreamstime.com/z/leather-shoes-26612971.jpg"
+        }
+    ];
+
+    // 1. Run a foreach loop on products data and console log individual product names
+
+    // 2. append this data on DOM
+
+    // 2.1. create element 
+
+    // 
+
+    let parent = document.getElementById('products')
+
+   function showProducts(){
+
+
+    data.forEach(function(product){
+        console.log(product.name);
+
+        let div = document.createElement("div"); //where we can append our all data
+
+        let img = document.createElement("img"); //img is required to show img --> these are basically tag
+        img.src = product.img
+
+        let product_price = document.createElement("p"); 
+        product_price.textContent = product.price; //"price" is added to p tag 
+
+        let product_name = document.createElement("p");
+        product_name.textContent = product.name;
+        
+        let Cartbutton_name = document.createElement("button")
+        Cartbutton_name.innerText = "Add to Cart";
+
+        Cartbutton_name.onclick = function(){
+            addtoCart(product)
+        }
+
+
+        div.append(img,product_name,product_price,Cartbutton_name);
+
+        parent.append(div)
+
+
+
+
+    })
+}
+    showProducts();
+
+    
+
+    //creating local storage and checking cart exists is local storage
+
+
+    if(localStorage.getItem("cart")===null){
+        localStorage.setItem("cart",JSON.stringify([]))  //local storage is created with this syntax
+    }
+   
+    //below code is for adding product to cart by clicking on button
+
+    function addtoCart(product){
+        let products_cart  = JSON.parse(localStorage.getItem("cart"));
+
+        products_cart.push(product);
+
+        localStorage.setItem("cart",JSON.stringify(products_cart)); // this is to set product added before 
+
+        console.log("products_cart",products_cart)
+        
+}
+
+
+
+</script>
