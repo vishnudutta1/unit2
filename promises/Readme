@@ -1,0 +1,10 @@
+when there is promise....so there will be two action 
+
+--->> complete(fulfilled)              ---->>  incomplete(not fulfilled)       
+            |                                       |
+            |                                       |
+         Resolve                                   Reject
+            |                                       |
+            |                                       |
+
+        .then()                                    .catch()

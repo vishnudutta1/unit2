@@ -18,7 +18,10 @@
         }
 
         img{
-            width: 80%;
+            width: 60%;
+        }
+        .mystyle{
+            color: red;
         }
 
     </style>
@@ -30,6 +33,8 @@
     <a href="cart.html"><button>Go to cart</button></a>
 
     <div id="products"></div>
+
+    
 </body>
 </html>
 
@@ -78,11 +83,17 @@
         }
     ];
 
+
+    //console.log(data[0])
+
     // 1. Run a foreach loop on products data and console log individual product names
 
     // 2. append this data on DOM
 
     // 2.1. create element 
+
+
+    
 
     // 
 
@@ -92,7 +103,7 @@
 
 
     data.forEach(function(product){
-        console.log(product.name);
+       // console.log(product.name);
 
         let div = document.createElement("div"); //where we can append our all data
 
@@ -100,10 +111,18 @@
         img.src = product.img
 
         let product_price = document.createElement("p"); 
-        product_price.textContent = product.price; //"price" is added to p tag 
+        product_price.textContent = product.price; //"price" is added to p tag price
 
         let product_name = document.createElement("p");
+
+        product_name.classList.add("mystyle"); //to add class name to p tag
+
+
         product_name.textContent = product.name;
+
+       // document.getElementsByTagName("p").style.color = "red";
+
+
         
         let Cartbutton_name = document.createElement("button")
         Cartbutton_name.innerText = "Add to Cart";
@@ -126,7 +145,7 @@
 
     
 
-    //creating local storage and checking cart exists is local storage
+    //creating local storage 
 
 
     if(localStorage.getItem("cart")===null){

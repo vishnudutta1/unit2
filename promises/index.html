@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promises</h1>
+
+    <input id="name" type="text">
+    <button id="promises" onclick="Register()">Register</button>
+</body>
+</html>
+
+<script>
+
+    let queue = ["Messi","Ronaldo","utkarsh","shaktiman"]
+    function Register(){
+
+        let name = document.getElementById("name").value; //syntax for getting input value
+
+        queue.push(name)  //after getting name from input we need to push it to array .
+
+        console.log(queue)
+
+        let message = `${name} your Reg. is succesful,now go stand`;
+
+        alert (message); 
+
+
+        let promise = new Promise(function(resolve,reject){
+            if(queue[0]===name){
+                resolve(`${name} its your turn now`);
+            }
+        })
+
+    }
+
+
+    function startVaccination(){
+        queue.shift();
+    }
+</script>
