@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tatkal booking system</h1>
+
+    <button onclick="CheckAvailability()">Check Availaibility</button>
+</body>
+</html>
+
+<script>
+    let BtoG = ["dhoni","kohli","abhi","dhiraj","anand","akshay","vishnu"]
+
+    let MtoG = ["dhoni","kohli","abhi","dhiraj","anand","akshay","vishnu"]
+
+    let PtoG = ["dhoni","kohli","abhi","dhiraj","anand","akshay","vishnu"]
+
+    async function CheckAvailability(){
+        
+        let promise = new Promise(function(resolve,reject){
+
+           setInterval(function(){
+            if(BtoG.length==4){
+                resolve(`BtoG is Availaible`)
+            }
+
+            else if(MtoG.length==4){
+                resolve(`MtoG is Availaible`)
+            }
+
+            else if(PtoG.length==4){
+                resolve(`MtoG is Availaible`)
+            }
+
+           },1000)
+
+        }) 
+    
+        let res = await promise;
+       // console.log("res:",res)
+    }
+
+
+    function cancelTicket(){
+
+        // cancellation speed should be random
+
+        let cancel_speed1 = Math.round(Math.random()*9);
+        //console.log("cancelling speed1:",cancel_speed1)
+
+        let cancel_speed2 = Math.round(Math.random()*10);
+        //console.log("cancelling speed2:",cancel_speed2)
+
+        let cancel_speed3 = Math.round(Math.random()*8);
+       // console.log("cancelling speed13:",cancel_speed3)
+
+
+        setTimeout(function(){
+            BtoG.pop();
+            
+        },cancel_speed1*1000);
+
+
+        setTimeout(function(){
+            MtoG.pop();
+            
+        },cancel_speed2*1000);
+
+        setTimeout(function(){
+            PtoG.pop();
+            
+        },cancel_speed3*1000);
+
+
+        console.log(BtoG,PtoG,MtoG)
+
+    }
+
+
+    let interval = setInterval(cancelTicket,2000)
+
+
+
+
+</script>

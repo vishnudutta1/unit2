@@ -23,17 +23,31 @@
 
         queue.push(name)  //after getting name from input we need to push it to array .
 
-        console.log(queue)
+       // console.log(queue)
 
-        let message = `${name} your Reg. is succesful,now go stand`;
+        let message = `${name} your Reg. is succesful,now go stand`; 
 
         alert (message); 
 
 
-        let promise = new Promise(function(resolve,reject){
-            if(queue[0]===name){
+        let mypromise = new Promise(function(resolve,reject){
+
+            // keep on checking after a certain amount of time if promise is fullfilled
+
+           let interval =  setInterval(function(){
+
+                if(queue[0]===name){
                 resolve(`${name} its your turn now`);
+
+                clearInterval(interval)
             }
+        },1000);
+
+           
+        });
+
+        mypromise.then(function(res){
+            alert(res)
         })
 
     }
@@ -41,5 +55,14 @@
 
     function startVaccination(){
         queue.shift();
+       // console.log("queue:",queue)
+
+       if(queue.length==0){
+           clearInterval(interval);
+       }
     }
+
+    startVaccination();
+
+    let interval = setInterval(startVaccination,4000);
 </script>
