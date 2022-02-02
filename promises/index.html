@@ -16,14 +16,18 @@
 
 <script>
 
-    let queue = ["Messi","Ronaldo","utkarsh","shaktiman"]
+    let queue = ["Messi","Ronaldo","utkarsh","shaktiman"];
+
+
+
+
     function Register(){
 
         let name = document.getElementById("name").value; //syntax for getting input value
-
+        //console.log(name)
         queue.push(name)  //after getting name from input we need to push it to array .
 
-       // console.log(queue)
+       //console.log(queue)
 
         let message = `${name} your Reg. is succesful,now go stand`; 
 
@@ -34,14 +38,16 @@
 
             // keep on checking after a certain amount of time if promise is fullfilled
 
-           let interval =  setInterval(function(){
+            function test(){
 
-                if(queue[0]===name){
-                resolve(`${name} its your turn now`);
+if(queue[0]===name){
+resolve(`${name} its your turn now`);
 
-                clearInterval(interval)
-            }
-        },1000);
+clearInterval(interval)
+}
+}
+
+           let interval =  setInterval(test,1000);
 
            
         });
@@ -55,7 +61,7 @@
 
     function startVaccination(){
         queue.shift();
-       // console.log("queue:",queue)
+        console.log("queue:",queue)
 
        if(queue.length==0){
            clearInterval(interval);
@@ -64,5 +70,5 @@
 
     startVaccination();
 
-    let interval = setInterval(startVaccination,4000);
+    let interval = setInterval(startVaccination,10000); 
 </script>
