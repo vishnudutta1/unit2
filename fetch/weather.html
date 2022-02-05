@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #products{
+            border: 1px solid black;
+            height: 600px;
+            margin: 5% 5% 10% 10%;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20%;
+            grid-gap: 5%;
+            justify-content: center;
+        }
+
+        img{
+            width: 60%;
+        }
+        .mystyle{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>Local Storage</h1>
+
+    <a href="cart.html"><button>Go to cart</button></a>
+
+    <div id="products"></div>
+
+    <button onclick="showProducts()">Get Weather</button>
+
+    
+</body>
+</html>
+
+<script>
+
+fetch('https://fakestoreapi.com/products')
+            .then(res => res.json())
+            .then(data => console.log(data))
+			.catch(error => console.log(error,"there is a error"))
+
+    //console.log(data[0])
+
+    // 1. Run a foreach loop on products data and console log individual product names
+
+    // 2. append this data on DOM
+
+    // 2.1. create element 
+
+
+    
+
+    // 
+
+    let parent = document.getElementById('products')
+
+    
+   function showProducts(data){
+
+
+data.forEach(function(product){
+   // console.log(product.name);
+
+    let div = document.createElement("div"); //where we can append our all data
+
+    let img = document.createElement("img"); //img is required to show img --> these are basically tag
+    img.src = product.image
+
+    let product_price = document.createElement("p"); 
+    product_price.textContent = product.price; //"price" is added to p tag price
+
+    let product_name = document.createElement("p");
+
+    product_name.classList.add("mystyle"); //to add class name to p tag
+
+
+    product_name.textContent = product.name;
+
+   // document.getElementsByTagName("p").style.color = "red";
+
+
+    
+    let Cartbutton_name = document.createElement("button")
+    Cartbutton_name.innerText = "Add to Cart";
+
+    Cartbutton_name.onclick = function(){
+        addtoCart(product)
+    }
+
+
+    div.append(img,product_name,product_price,Cartbutton_name);
+
+    parent.append(div)
+
+
+
+
+})
+}
+showProducts();
+
+
+
+//creating local storage 
+
+
+if(localStorage.getItem("cart")===null){
+    localStorage.setItem("cart",JSON.stringify([]))  //local storage is created with this syntax
+}
+
+//below code is for adding product to cart by clicking on button
+
+function addtoCart(product){
+    let products_cart  = JSON.parse(localStorage.getItem("cart"));
+
+    products_cart.push(product);
+
+    localStorage.setItem("cart",JSON.stringify(products_cart)); // this is to set product added before 
+
+    console.log("products_cart",products_cart)
+    
+}
+
+
+
+
+</script>
